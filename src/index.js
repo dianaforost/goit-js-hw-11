@@ -28,46 +28,52 @@ function onSubmitForm(e) {
   querySearch = e.currentTarget.searchQuery.value.trim();
   console.log(querySearch);
   gallery.innerHTML='';
+  page = 1;
   loadMoreBtn.classList.add("hidden")
+  render()
   
   
-  if (querySearch === '') {
-    return Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-  }
-  fetchImages(querySearch, page, perPage)
-  .then(({ data }) => {
-    console.log(data.hits);
-    if (data.totalHits === 0) {
-      return Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
-    } else{
-      createGalleryImg(data.hits);
-      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-      lightbox.refresh();
-      if(data.totalHits > perPage){
-        loadMoreBtn.classList.remove("hidden");
+  async function render(){
+    try{
+      const {data : response} = await fetchImages(querySearch, page, perPage);
+      if (querySearch === '') {
+        return Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
       }
-    }
-  })
-  .catch(() =>{ return Notiflix.Notify.failure(
-    'Sorry, there are no images matching your search query. Please try again.'
-  );
-});
+  if (response.totalHits === 0) {
+            return Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );}
+        else{
+          createGalleryImg(response.hits);
+                Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
+                lightbox.refresh();
+                if(response.totalHits > perPage){
+                  loadMoreBtn.classList.remove("hidden");
+                }
+              }
 }
-function loadMore(){
+catch(error){
+  console.log(error);
+}
+  }
+
+}
+
+async function loadMore(){
   page +=1; 
-  fetchImages(querySearch, page, perPage)
-  .then(({data}) =>{
-    createGalleryImg(data.hits);
+  try {
+    const {data:response} = await fetchImages(querySearch, page, perPage);
+    createGalleryImg(response.hits);
     lightbox.refresh();
-    const totalPages = Math.ceil(data.totalHits / perPage)
-    if(page > totalPages){
-      loadMoreBtn.classList.add("hidden");
-      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
+    const totalPages = Math.ceil(response.totalHits / perPage)
+    if(page === totalPages){
+          loadMoreBtn.classList.add("hidden");
+          Notiflix.Notify.info("We're sorry, but you've reached the end of search results.")
     }
-  })
-  .catch(error => console.log(error));
+  }
+  catch(error){
+    console.log(error);
+  }
 };

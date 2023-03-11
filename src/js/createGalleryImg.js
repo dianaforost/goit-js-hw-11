@@ -2,7 +2,7 @@
 export {createGalleryImg}
 const gallery = document.querySelector('.gallery');
 function createGalleryImg(images) {
-  let markup = images.map(
+  const markup = images.map(
       ({
         webformatURL,
         largeImageURL,
