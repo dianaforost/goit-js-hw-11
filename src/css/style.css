@@ -1,0 +1,123 @@
+body{
+    margin: 0;
+    text-align: center;
+    /* background-color: #37306B; */
+    background-color: rgba(255,251,235, 0.1);
+    padding-bottom: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #EEEEEE;
+}
+
+p{
+    margin: 0;
+}
+
+img{
+    width: 100vw;
+    max-width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    display: block;
+}
+
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.search-form{
+    /* background-color: rgba(248, 132, 103, 0.4); */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #ECECEC;
+}
+.search-form input{
+    width: 20%;
+    padding: 13px 10px ;
+    margin-right: 10px;
+    color: #fff;
+    font-weight: 700;
+    border: 1px solid #495579;
+    background-color: rgba(73, 85, 121, 0.9);
+    /* background-color: #D27685; */
+    border-radius: 10px;
+    border: none;
+}
+.search-form input:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.search-form input::placeholder{
+    color: #fff;
+    font-weight: 400;
+}
+.search-form button{
+    width: 7%;
+    padding: 12px 10px;
+    background-color: #263159;
+    /* background-color: #66347F; */
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    /* font-weight: 600; */
+}
+
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+.photo-card{
+    width: 348px;
+    height: 100%;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #D27685; */
+    /* border-radius: 20px; */
+}
+.info{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    /* border-bottom: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
+    border-right: 1px solid #EEEEEE; */
+}
+.info-item{
+    display: flex;
+    flex-direction: column;
+}
+
+/* LOADMORE BTN */
+.load-more{
+    /* padding: 9px 19px; */
+    cursor: pointer;
+    width: 7%;
+    padding: 12px 10px;
+    background-color: #263159;
+    /* background-color: #66347F; */
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    /* font-weight: 600; */
+}
